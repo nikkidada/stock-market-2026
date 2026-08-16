@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 · A股 vs 美股 年度观察</title>
+<meta name="description" content="2026年A股与美股大盘走势、市值前十公司变迁 —— 动态可视化">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">2026 年度数据 · 自动更新</div>
+    <h1>A股 <span class="vs">vs</span> 美股 年度观察</h1>
+    <p class="subtitle">大盘指数走势 · 市值前十公司变迁 · 动态可视化</p>
+    <p class="meta" id="dataMeta">数据加载中…</p>
+  </div>
+</header>
+
+<main>
+  <!-- 概览卡片 -->
+  <section class="section" id="overview">
+    <h2 class="section-title">市场概览 <span class="hint">点击卡片切换指数走势图</span></h2>
+    <div class="cards" id="overviewCards"><!-- JS 生成 --></div>
+  </section>
+
+  <!-- 指数走势 -->
+  <section class="section" id="indexChartSection">
+    <h2 class="section-title">2026 年大盘走势 <span class="hint">年初 = 100 归一化对比</span></h2>
+    <div class="tabs" id="indexTabs">
+      <button class="tab active" data-group="cn">A股四大指数</button>
+      <button class="tab" data-group="us">美股三大指数</button>
+      <button class="tab" data-group="all">两市全览</button>
+    </div>
+    <div class="chart-box">
+      <div id="indexChart" class="chart"></div>
+      <div class="chart-legend" id="indexLegend"></div>
+    </div>
+  </section>
+
+  <!-- 市值前十 -->
+  <section class="section" id="top10Section">
+    <h2 class="section-title">市值前十公司 · 年度变迁 <span class="hint">动态排行榜 · 逐月演化</span></h2>
+    <div class="tabs" id="marketTabs">
+      <button class="tab active" data-market="cn">A股 市值前十</button>
+      <button class="tab" data-market="us">美股 市值前十</button>
+    </div>
+
+    <div class="race-wrap">
+      <div class="race-head">
+        <div class="race-month" id="raceMonth">2026-01</div>
+        <div class="race-controls">
+          <button id="racePlay" class="btn-play" title="播放/暂停">▶</button>
+          <input type="range" id="raceSlider" min="0" max="0" value="0" aria-label="时间进度">
+          <select id="raceSpeed" aria-label="播放速度">
+            <option value="1400">0.5x</option>
+            <option value="700" selected>1x</option>
+            <option value="350">2x</option>
+          </select>
+        </div>
+      </div>
+      <div id="raceChart" class="chart race-chart"></div>
+      <p class="race-note" id="raceNote"></p>
+    </div>
+
+    <div class="table-wrap">
+      <table id="rankTable">
+        <thead>
+          <tr>
+            <th>#</th><th>公司</th><th>代码</th>
+            <th>当前市值</th><th>年初市值</th>
+            <th>年内变动</th><th>变动幅度</th>
+          </tr>
+        </thead>
+        <tbody><!-- JS 生成 --></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p><strong>数据来源</strong>：东方财富行情 API（A股/美股列表、K线、个股详情）· 腾讯行情 API（美股指数K线）</p>
+    <p><strong>口径说明</strong>：年初市值 = 总股本 × 2025-12-31收盘价（复权前）；当前市值 = 最新总市值；2026年新上市公司（如 SpaceX、SK海力士）无年初市值，按上市首月起始展示。</p>
+    <p><strong>免责声明</strong>：本页面数据仅供学习研究，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+    <p class="repo-link" id="repoLink">由数据脚本自动生成 · 每日更新</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script>window.echarts || document.write('<script src="https://unpkg.com/echarts@5.5.1/dist/echarts.min.js"><\/script>');</script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
