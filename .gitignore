@@ -1,0 +1,7 @@
+# 本地工具与临时文件（不提交）
+.tmp/
+pylibs/
+ghcli/
+.gh/
+__pycache__/
+*.pyc
