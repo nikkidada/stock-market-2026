@@ -4,7 +4,10 @@
 
 ## 🌐 在线访问
 
-👉 GitHub Pages 公开地址（部署完成后生效）：`https://<你的用户名>.github.io/<仓库名>/`
+👉 **已上线**：https://nikkidada.github.io/stock-market-2026/
+
+- 仓库：https://github.com/nikkidada/stock-market-2026
+- 数据每日自动更新（GitHub Actions 定时任务，交易日北京时间约 09:00 后刷新）
 
 ## ✨ 页面功能
 
