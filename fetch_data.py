@@ -318,10 +318,17 @@ def main():
         print(f"[US-TOP{i}] {c['name']} {c['code']} mcap={it['mcap']/1e12:.3f}万亿美元 "
               f"start={'%.3f万亿美元' % (c['mcap_start']/1e12) if c['mcap_start'] else 'None'}")
 
+    # 数据截至日期: 取 A股指数序列最后一个交易日
+    as_of = "2026-08-14 收盘"
+    if result["indices"]["cn"]:
+        s = result["indices"]["cn"][0]["series"]
+        if s:
+            as_of = s[-1]["d"] + " 收盘"
+
     result["meta"] = {
         "year": YEAR,
         "generated": TODAY,
-        "as_of": "2026-08-14 收盘",
+        "as_of": as_of,
         "source": "腾讯行情API / Yahoo Finance / 东方财富行情API",
     }
 
