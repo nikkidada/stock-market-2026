@@ -31,5 +31,7 @@ jobs:
             echo "No data change, skip commit"
           else
             git commit -m "chore: refresh market data $(date -u +'%Y-%m-%d')"
+            # 避免与并发提交冲突: 先 rebase 再推送
+            git pull --rebase origin main || { echo "rebase failed"; exit 1; }
             git push
           fi
